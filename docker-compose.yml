@@ -2,7 +2,9 @@ version: "3.9"
 
 services:
   server:
-    image: simple-server
+    build:
+      context:  ./simple-server-dynamic-sessions/.
+      dockerfile: ./Dockerfile
     environment:
       QUICKFIXJ_SERVER_CONFIG_FILE: "file:/opt/app/quickfixj-server.cfg"
     volumes:
@@ -13,7 +15,9 @@ services:
       - net
 
   client-1:
-    image: simple-client
+    build:
+      context:  ./simple-client/.
+      dockerfile: ./Dockerfile
     environment:
       QUIICKFIXJ_CLIENT_CONFIG_FILE: "file:/opt/app/quickfixj-client.cfg"
     volumes:
@@ -24,7 +28,9 @@ services:
       - net
 
   client-2:
-    image: simple-client
+    build:
+      context:  ./simple-client/.
+      dockerfile: ./Dockerfile
     environment:
       QUIICKFIXJ_CLIENT_CONFIG_FILE: "file:/opt/app/quickfixj-client.cfg"
     volumes:
